@@ -1,0 +1,44 @@
+<pre>
+
+</pre>
+<p style="position: absolute; right: 0; bottom: 0; left: 0;">
+ <a href="javascript:void(0);" id="buttonClick" download>立即下载</a>
+</p>
+<script>
+
+var saveData = (function () {
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    return function (data, fileName) {
+        var json = JSON.stringify(data),
+            blob = new Blob([json], {type:"application/json", contentType:"application/octet-stream"}),
+            url = this.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        this.URL.revokeObjectURL(url);
+    };
+}());
+
+document.addEventListener("click",function () {
+    console.log('click download')
+    var data = { x: 42, s: "hello, world", d: new Date() },
+    fileName = "my-download.json";
+    saveData(data, fileName);
+  })
+
+  
+
+
+// document.getElementById('create').onclick = () => {
+//   const textbox = document.getElementById('count');
+//   const count = parseInt(textbox.value, 10);
+//   parent.postMessage({ pluginMessage: { type: 'create-shapes', count } }, '*')
+// }
+
+// document.getElementById('cancel').onclick = () => {
+//   parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+// }
+
+</script>

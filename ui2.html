@@ -1,0 +1,86 @@
+
+<!-- <p style="position: absolute; right: 0; bottom: 0; left: 0;">
+ <a href="javascript:void(0);" id="buttonClick" download>立即下载</a>
+</p> -->
+<style>
+    section{
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+    table{
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+    }
+    table td{
+        padding: 3px 5px;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+    table th{
+        background-color: #eee;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+</style>
+
+<section>
+    <button id="buttontable">表格</button>
+    <button id="buttonjson">JSON</button>
+    <div id="content">
+        请选中组件
+    </div>
+
+</section>
+<script>
+// import monaco from './node_modules/monaco-editor';
+// import {parse} from "./node_modules/@babel/parser";
+// import traverse from "./node_modules/@babel/traverse";
+// import MonacoJSXHighlighter from './node_modules/monaco-jsx-highlighter';
+// const monacoJSXHighlighter = new MonacoJSXHighlighter(
+//    monaco, parse, traverse, aMonacoEditor()
+// );
+
+// // Activate highlighting (debounceTime default: 100ms)
+// monacoJSXHighlighter.highlightOnDidChangeModelContent(100);
+// // Activate JSX commenting
+// monacoJSXHighlighter.addJSXCommentCommand();
+
+ var result = {}
+ onmessage = (e) => {
+    const {pluginMessage} = e.data;
+    let json = JSON.parse(pluginMessage)
+
+    if(!json) return;
+
+    result = json;
+
+    formatTable()
+ }
+
+ document.querySelector('#buttonjson').addEventListener('click', () => {
+    document.querySelector('#content').innerHTML = `<pre>${JSON.stringify(result,null, 4)}</pre>`;
+ })
+
+
+//  function aMonacoEditor() {
+//    return monaco.editor.create(
+//       document.getElementById("content"), {
+//          value: 'const AB=<A x={d}><B>{"hello"}</B></A>;',
+//          language: 'javascript'
+//       });
+// }
+
+ function formatTable(){
+    let table = '<table cellspacing="0" cellpadding="0" border="0"><tr><th>熟悉名</th><th>类型</th><th>值</th></tr>'
+    for(let item in result) {
+        table+=`<tr><td>${item}</td><td>${typeof result[item]}</td><td>${result[item]}</td></tr>`
+    }
+    table += '</table>';
+    document.querySelector('#content').innerHTML = table;
+}
+
+ document.querySelector('#buttontable').addEventListener('click', formatTable)
+
+
+</script>

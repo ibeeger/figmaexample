@@ -1,0 +1,11 @@
+{
+  "name": "EeoFigma",
+  "id": "1138803446270393228",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "ui": "ui.html"
+}
