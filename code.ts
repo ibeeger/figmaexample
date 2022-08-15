@@ -82,9 +82,13 @@ export default function ${name.replace(/[0-9]/ig,'').toLocaleLowerCase()} (${pro
 
 function renderComponent(node){
   const {children, type, name} = node;
+
+
+  if(type === 'TEXT') return `<Text>${name}</Text>`;
+
    
   return (`<div className={'${name.replace(/[0-9]/ig,'').toLocaleLowerCase()}'}>
-          ${type} ${renderChildren(children, '')}
+          ${renderChildren(children, '')}
         </div>`)
 }
 
