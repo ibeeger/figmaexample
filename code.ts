@@ -26,25 +26,8 @@ if (figma.editorType === 'figma') {
     
   })
 
-  // Calls to "parent.postMessage" from within the HTML page will trigger this
-  // callback. The callback will be passed the "pluginMessage" property of the
-  // posted message.
   figma.ui.onmessage = msg => {
-    // One way of distinguishing between different types of messages sent from
-    // your HTML page is to use an object with a "type" property like this.
-    if (msg.type === 'create-shapes') {
-      const nodes: SceneNode[] = [];
-      for (let i = 0; i < msg.count; i++) {
-        const rect = figma.createRectangle();
-        rect.x = i * 150;
-        rect.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
-        // console.log(rect.height,'-----', rect.x)
-        figma.currentPage.appendChild(rect);
-        nodes.push(rect);
-      }
-      figma.currentPage.selection = nodes;
-      figma.viewport.scrollAndZoomIntoView(nodes);
-    }
+    
 
     figma.closePlugin();
   };
@@ -53,8 +36,28 @@ if (figma.editorType === 'figma') {
 
 
 function convert(node){
-  const {children, name, componentPropertyDefinitions} = node;
+
+  if(!node) return;
+
+  const {children, name, componentPropertyDefinitions, type} = node;
   let props;
+
+  console.log(type,'=====type')
+
+  if(type === 'TEXT') return `${name}`
+
+
+  // switch(type){
+
+  //   case 'TEXT':
+  //     break;
+  //   default:
+
+
+
+  // }
+
+
 
   if(componentPropertyDefinitions){
     props = '{';
@@ -65,33 +68,33 @@ function convert(node){
   }
 
 
+  console.log('children', children)
 
-  let component = `
-    export default function ${name} (${props}){
-      return (<div>
-        ${renderChildren(children, '')}
-      </div>)
-    }
-  `;
+let component = `
+export default function ${name.replace(/[0-9]/ig,'').toLocaleLowerCase()} (${props}){
+  return (<>
+    ${renderChildren(children, '')}
+  </>)
+}`;
   return component;
 }
 
 
 function renderComponent(node){
-  const {children, name} = node;
-  return `<div className={${name}}>
-    ${renderChildren(children, '')}
-  </div>`
+  const {children, type, name} = node;
+   
+  return (`<div className={'${name.replace(/[0-9]/ig,'').toLocaleLowerCase()}'}>
+          ${type} ${renderChildren(children, '')}
+        </div>`)
 }
 
 
 function renderChildren(children, css){
   if(!children || !children.length) return '';
-  children.map((item) => {
-    return `
-      <div>
-       ${renderComponent(item)}
-      </div>
-    `
+
+  return children.map((item) => {
+    return(`<div>
+  ${renderComponent(item)}
+</div>`)
   })
 }

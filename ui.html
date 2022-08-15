@@ -25,17 +25,16 @@
 </style>
 
 <section>
-    <div id="content">
+    <pre id="content">
         请选中组件
-    </div>
-
+    </pre>
 </section>
 <script>
  var result = {}
  onmessage = (e) => {
     const {pluginMessage} = e.data;
     result = pluginMessage;
-    document.querySelector('#content').innerHTML = result;
+    document.querySelector('#content').innerText = result;
  }
 
 
