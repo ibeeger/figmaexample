@@ -1,4 +1,7 @@
-"use strict";
+
+// "use strict";
+
+// import * as test from './test'
 
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
@@ -13,6 +16,7 @@ if (figma.editorType === 'figma') {
     height:700,
   });
 
+  // console.log(test);
   // console.log('figma.currentPage.selection', figma)
 
   figma.on('selectionchange', () => {
@@ -53,9 +57,9 @@ if (figma.editorType === 'figma') {
 
 
 function convert(node){
-  const {children, name, componentPropertyDefinitions} = node;
+  const {children, name, componentPropertyDefinitions, type} = node;
   let props;
-
+  console.log(type,'------');
   if(componentPropertyDefinitions){
     props = '{';
     for(let item in componentPropertyDefinitions){
@@ -63,7 +67,6 @@ function convert(node){
     }
     props+='}'
   }
-
 
 
   let component = `
