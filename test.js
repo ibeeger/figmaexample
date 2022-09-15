@@ -1,3 +1,3 @@
-export const play = () => {
-    console.log('logo');
-};
+export function showExample(value) {
+    return 123;
+}

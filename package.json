@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Your Figma Plugin",
   "main": "code.js",
+  "resolveJsonModule": "true",
+  "module": "true",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "start": "webpack --mode=development --watch",
     "watch": "npm run build -- --watch"
   },
   "author": "",
@@ -12,12 +15,27 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.50.0",
     "@types/node": "^18.0.6",
-    "typescript": "*"
+    "typescript": "*",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.1",
+    "html-inline-script-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^18.1.0",
+    "react-dev-utils": "^12.0.1",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "sass": "^1.51.0",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
   },
   "dependencies": {
     "@babel/parser": "^7.18.8",
-    "@babel/traverse": "^7.18.8",
-    "monaco-editor": "^0.34.0",
-    "monaco-jsx-highlighter": "^2.0.4"
+    "@babel/traverse": "^7.18.8"
   }
 }
