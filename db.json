@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Eat as many strawberries as you can",
+      "image": "https://picsum.photos/id/1080/300/300"
+    },
+    {
+      "id": 2,
+      "name": "ET Live Show",
+      "image": "https://picsum.photos/id/1025/300/300"
+    },
+    {
+      "id": 3,
+      "name": "The best DJ session ever!",
+      "image": "https://picsum.photos/id/304/300/300"
+    },
+    {
+      "id": 4,
+      "name": "All included in the best hotel of the world!",
+      "image": "https://picsum.photos/id/451/300/300"
+    }
+  ]
+}

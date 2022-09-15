@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "outDir": "dist",
+    "jsx": "react",
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    // "removeComments": true,
+    // "noImplicitAny": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "lib": ["es6"],
-    "baseUrl": ".",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"

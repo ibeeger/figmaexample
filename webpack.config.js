@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 function getEnvVars() {
-  const envVars = dotenv.config().parsed;
+  const envVars = dotenv.config().parsed || {};
   return Object.keys(envVars).reduce((obj, key) => {
     obj[key] = JSON.stringify(envVars[key]);
     return obj;
