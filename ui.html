@@ -3,39 +3,35 @@
  <a href="javascript:void(0);" id="buttonClick" download>立即下载</a>
 </p> -->
 <style>
+    *{margin: 0; padding: 0;}
     section{
         width: 100%;
         height: 100%;
         overflow-y: auto;
+        display: flex;
+
     }
-    table{
-        border-top: 1px solid #ccc;
-        border-left: 1px solid #ccc;
+    .htmlbox{
+        position: relative;
+        width: 100%;
     }
-    table td{
-        padding: 3px 5px;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-    }
-    table th{
-        background-color: #eee;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
+    div{
+        /* border: 1px solid #aaa; */
     }
 </style>
 
 <section>
-    <div id="content">
-        请选中组件
-    </div>
-
+    <!-- <pre id="content">请选中组件
+    </pre> -->
+    <div class="htmlbox"></div>
 </section>
 <script>
  var result = {}
  onmessage = (e) => {
     const {pluginMessage} = e.data;
-    result = pluginMessage;
-    document.querySelector('#content').innerHTML = result;
+    // result = JSON.stringify(pluginMessage, null, 2);
+    // console.log(pluginMessage);
+    document.querySelector('.htmlbox').innerHTML = pluginMessage;
  }
 
 
